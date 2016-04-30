@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+    	<title>Kunyang_Que_PracticeShoppingCart</title>
+
+    	<style>
+    		ul {
+			list-style-type:none;
+			margin: 0px;
+			padding:0px;
+			width:610px;
+		}
+
+		li {
+			float:left;
+			margin-left:1px;
+			margin-right: 1px;
+		}
+
+		a {
+			text-decoration:none;
+			display:block;
+			height:30px;
+			line-height:30px;
+			width:120px;
+			background-color:#ccc;
+			text-align:center;
+			color:red;
+		}
+
+		a:hover {
+			background-color:#f60;
+			color:#fff;
+		}
+
+		#container{
+			height:auto;
+			width:800px;
+			border:1px solid black;
+			margin: 0 auto;
+		}
+
+		#titlebar{
+			margin:20px 94px;
+			border:1px solid red;
+			width:auto; 
+			display:inline-block !important; 
+			display:inline; 
+		}
+
+		#tableContainer{
+			margin:0px 94px 20px 94px;
+			border:1px solid red;
+			width:auto; 
+			display:inline-block !important; 
+			display:inline; 
+		}
+
+		#btnSubmit{
+			margin:0px 273px;
+			padding:1px;
+		}
+    	</style>
+</head>
+<body>
+
+<?php
+	include("booklist.txt");
+	session_start();
+?>
+
+
+<div id="container">
+	<div id="titlebar">
+		<ul>
+			<li><a href="index.php?book=economy">ecomomy</a></li>
+			<li><a href="index.php?book=IT">IT</a></li>
+			<li><a href="index.php?book=culture">culture</a></li>
+			<li><a href="index.php?book=science">science</a></li>
+			<li><a href="shoppingCart.php">购物车</a></li>
+		</ul>
+	</div>
+
+	<br>
+
+	<div id="tableContainer">
+		<form action="" method="post">
+			<table border="2" width=610px margin=1px>
+				<tr>
+					<th>书名</th>
+					<th>作者</th>
+					<th>价格</th>
+					<th>操作</th>
+				</tr>
+
+				<?php
+
+					if(isset($_GET["book"]))
+					{
+						$sort = $_GET["book"];
+					}
+					else
+					{
+						$sort = "economy";
+					}
+
+					$bookInfo = null;
+					$num = 0;
+
+					if (empty($_SESSION)) 
+					{
+					    	foreach ($bc as $key=>$value) 
+					    	{
+					        		foreach ($value as $k=>$v) 
+					        		{
+
+					            			$v['num'] = 0;
+								$bookInfo[$num] = $v;
+								$_SESSION[$v['name']] = $v;
+								$num++;
+							}
+					    	}
+					}
+
+					foreach ($bc[$sort] as $key=>$value) 
+					{
+						echo "<tr>";
+
+					    	foreach ($value as $k=>$v) 
+					    	{
+					        		echo "<td>$v</td>";
+						}
+					    	$bookName = $value["name"];
+					    	echo "<td><input name='s[]' type='checkbox' value=$bookName></td>";
+					    	echo "</tr>";
+					}
+
+				?>
+
+			</table>
+
+			<br>
+
+			<div id="btnSubmit">
+				<input type="submit" value="submit">
+			</div>
+		</form>
+	</div>
+</div>
+
+<?php
+
+	$a=@$_POST["s"];
+
+	for ($i = 0; $i < count($a); $i++) 
+	{
+		foreach ($_SESSION as $key=>$value) 
+		{
+        			if ($key == $a[$i]) 
+        			{
+				$_SESSION[$key]['num']++;
+        			}
+    		}
+	}
+
+?>
+
+</body>
+</html>

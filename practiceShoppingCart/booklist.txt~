@@ -1,0 +1,31 @@
+﻿<?php
+
+$bc["economy"]=array(
+		array("name"=>"小众行为学","author"=>"詹姆斯.哈金","price"=>29),
+		array("name"=>"经济学就这么有趣","author"=>"梁小民","price"=>24),
+		array("name"=>"屌丝经济学","author"=>"周志","price"=>23),
+		array("name"=>"麻辣经济学","author"=>"王兴康","price"=>13)
+		);
+
+$bc["IT"]=array(
+		array("name"=>"细说php","author"=>"高洛峰","price"=>92),
+		array("name"=>"Photoshop入门宝典","author"=>"李金明","price"=>69),
+		array("name"=>"ui设计经典","author"=>"Susan","price"=>34),
+		array("name"=>"hadoop权威指南","author"=>"杨冬青","price"=>74)
+		);
+
+$bc["culture"]=array(
+		array("name"=>"追风筝的人","author"=>"卡勒德·胡赛","price"=>21),
+		array("name"=>"像狗一样奔跑","author"=>"里则林","price"=>21),
+		array("name"=>"瞌睡先生","author"=>"伊集院静","price"=>29),
+		array("name"=>"肖申克的救赎","author"=>"史蒂芬金","price"=>39)
+		);
+
+$bc["science"]=array(
+		array("name"=>"疯狂实验史","author"=>"阙琨洋","price"=>28),
+		array("name"=>"数学的历史","author"=>"Kun","price"=>29),
+		array("name"=>"自然科学史","author"=>"yang","price"=>30),
+		array("name"=>"生命科学史","author"=>"Que","price"=>54)
+		);
+
+?>
