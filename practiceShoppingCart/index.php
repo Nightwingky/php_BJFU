@@ -5,7 +5,7 @@
     	<title>Kunyang_Que_PracticeShoppingCart</title>
 
     	<style>
-    		ul {
+    	ul {
 			list-style-type:none;
 			margin: 0px;
 			padding:0px;
