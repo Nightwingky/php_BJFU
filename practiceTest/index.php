@@ -18,16 +18,6 @@
 			margin-right: 1px;
 		}
 
-		a {
-			text-decoration:none;
-			display: block;
-			height:30px;
-			line-height:30px;
-			width:120px;
-			background-color:#eeeeee;
-			text-align:center;
-			color:black;
-		}
 	</style>
 
 </head>
@@ -44,37 +34,41 @@ function checkAnswer()
 </script>
 
 <?php
-	session_start();
-    include("test.txt");
+	
+	session_start();//开启SESSION
 
-    $current = 1;
+	include("test.txt");//导入text.txt
 
-    if(isset($_SESSION["current"])) 
-    {
-        $current = $_SESSION["current"];
-    }
-    else
-    {
-        $_SESSION["current"] = 1;
-    }
+	$current = 1;//$current变量记录当前页面的值，值为该页面第一题的题号
 
-    if(isset($_SESSION["no".$current]))
-    {
-        $answer1 = $_SESSION["no".$current];
-    }
-    else
-    {
-        $answer1 = "null";
-    }
+	//$current变量默认值是1，点击下一页时改变该值
+	if(isset($_SESSION["current"])) 
+    	{
+        	$current = $_SESSION["current"];
+    	}
+	else
+	{
+		$_SESSION["current"] = 1;
+	}
+	
+	//分别记录两道题目的答案
+    	if(isset($_SESSION["no".$current]))
+    	{
+    		$answer1 = $_SESSION["no".$current];
+   	}
+    	else
+    	{
+        	$answer1 = "null";
+    	}
 
-    if(isset($_SESSION["no".($current + 1)]))
-    {
-        $answer2 = $_SESSION["no".($current + 1)];
-    }
-    else
-    {
-        $answer2 = "null";
-    }
+    	if(isset($_SESSION["no".($current + 1)]))
+    	{
+        	$answer2 = $_SESSION["no".($current + 1)];
+    	}
+	else
+	{
+		$answer2 = "null";
+	}
 ?>
 
 <form 
@@ -83,28 +77,30 @@ function checkAnswer()
 	name = 'form1'>
 	
 	<?php
-		//print question1
+		//打印问题1
 		echo "<h4>".$current.".".$test[$current]['subject']."</h4>";
 
-		//print selection
+		//打印选项
 		for($i = 'A'; $i <= 'D'; $i++)
 		{
 			echo "<p>";
+			//打印radiobutton
 			echo "<input type='radio' name='choose1' value='" . $i . "' onchange='checkAnswer()'";
 			if($answer1 == $i) 
-            {
-                echo "checked='checked'";
-            }
-            echo ">";
+			{
+				echo "checked='checked'";//如果某项被选中，则勾选该项
+			}
+			echo ">";
+			//打印选项的内容，如“A.php老师是刘音”
 			echo $i.".";
 			echo $test[$current][$i];
+
 			echo "</p>";
 		}
 
-		//print question2
+		//打印问题2
 		echo "<h4>".($current+1).".".$test[$current+1]['subject']."</h4>";
 
-		//print selection
 		for($i = 'A'; $i <= 'D'; $i++)
 		{
 			echo "<p>";
@@ -120,13 +116,18 @@ function checkAnswer()
 		}
 	?>
 
+	<?php
+		$transmit = $_SESSION["current"];
+	?>
 	<div>
 		<ul>
 			<li>
 				<div style='margin:10px 0px 5px 10px;'>
 					<?php
+						//上一页按钮						
 						if($current > 2)
 						{
+							
 							echo "<input type='submit' name='last' value='last'>";
 						}
 						else
@@ -139,6 +140,7 @@ function checkAnswer()
 			<li>
 				<div style='margin:10px 0px 5px 10px;'>
 					<?php
+						//下一页按钮						
 						if($current + 1< count($test))
 						{
 							echo "<input type='submit' name='next' value='next'>";
@@ -158,6 +160,7 @@ function checkAnswer()
 <br><br>
 
 <?php 
+	//输出$_SESSION数组里的内容	
 	var_dump($_SESSION);
 ?>
 
