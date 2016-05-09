@@ -53,23 +53,23 @@ function checkAnswer()
     {
         $current = $_SESSION["current"];
     }
-    else if($_SESSION["current"] == "")
+    else
     {
         $_SESSION["current"] = 1;
     }
 
-    if(isset($_SESSION["no" . $current]))
+    if(isset($_SESSION["no".$current]))
     {
-        $answer1 = $_SESSION["no" . $current];
+        $answer1 = $_SESSION["no".$current];
     }
     else
     {
         $answer1 = "null";
     }
 
-    if(isset($_SESSION["no" . ($current + 1)]))
+    if(isset($_SESSION["no".($current + 1)]))
     {
-        $answer2 = $_SESSION["no" . ($current + 1)];
+        $answer2 = $_SESSION["no".($current + 1)];
     }
     else
     {
@@ -90,24 +90,32 @@ function checkAnswer()
 		for($i = 'A'; $i <= 'D'; $i++)
 		{
 			echo "<p>";
-			echo "<input type='radio' name='choose1' value='A' onchange='addAnswer()'>";
+			echo "<input type='radio' name='choose1' value='" . $i . "' onchange='checkAnswer()'";
+			if($answer1 == $i) 
+            {
+                echo "checked='checked'";
+            }
+            echo ">";
 			echo $i.".";
 			echo $test[$current][$i];
 			echo "</p>";
 		}
 
-		$current++;
-
 		//print question2
-		echo "<h4>".$current.".".$test[$current]['subject']."</h4>";
+		echo "<h4>".($current+1).".".$test[$current+1]['subject']."</h4>";
 
 		//print selection
 		for($i = 'A'; $i <= 'D'; $i++)
 		{
 			echo "<p>";
-			echo "<input type='radio' name='choose1' value='A' onchange='addAnswer()'>";
+			echo "<input type='radio' name='choose2' value='" . $i . "' onchange='checkAnswer()'";
+			if($answer2 == $i) 
+            {
+                echo "checked='checked'";
+            }
+            echo ">";
 			echo $i.".";
-			echo $test[$current][$i];
+			echo $test[$current+1][$i];
 			echo "</p>";
 		}
 	?>
@@ -131,7 +139,7 @@ function checkAnswer()
 			<li>
 				<div style='margin:10px 0px 5px 10px;'>
 					<?php
-						if($current < count($test))
+						if($current + 1< count($test))
 						{
 							echo "<input type='submit' name='next' value='next'>";
 						}
