@@ -106,10 +106,10 @@ function checkAnswer()
 			echo "<p>";
 			echo "<input type='radio' name='choose2' value='" . $i . "' onchange='checkAnswer()'";
 			if($answer2 == $i) 
-            {
-                echo "checked='checked'";
-            }
-            echo ">";
+            		{
+                		echo "checked='checked'";
+            		}
+            		echo ">";
 			echo $i.".";
 			echo $test[$current+1][$i];
 			echo "</p>";
