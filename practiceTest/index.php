@@ -33,6 +33,40 @@ function checkAnswer()
 
 </script>
 
+<script type="text/javascript">
+
+    var start = -1;
+    var tid = 0;
+
+    function begin()
+    {
+        start = 90;
+        countDown();
+        tid = setInterval(countDown, 1000)
+    }
+
+    function countDown()
+    {
+        if(start > 0)
+        {
+            setValue(start+'s left');
+            start--;
+        }
+        else if(start == 0)
+        {
+            setValue('End');
+            clearInterval(tid);
+            return;
+        }       
+    }
+
+    function setValue(str)
+    {
+        document.getElementById("timeless").innerHTML = str;
+    }
+
+</script>
+
 <?php
 	
 	session_start();//开启SESSION
@@ -43,28 +77,28 @@ function checkAnswer()
 
 	//$current变量默认值是1，点击下一页时改变该值
 	if(isset($_SESSION["current"])) 
-    	{
-        	$current = $_SESSION["current"];
-    	}
+    {
+        $current = $_SESSION["current"];
+    }
 	else
 	{
 		$_SESSION["current"] = 1;
 	}
 	
 	//分别记录两道题目的答案
-    	if(isset($_SESSION["no".$current]))
-    	{
-    		$answer1 = $_SESSION["no".$current];
+    if(isset($_SESSION["no".$current]))
+    {
+    	$answer1 = $_SESSION["no".$current];
    	}
-    	else
-    	{
-        	$answer1 = "null";
-    	}
+    else
+    {
+        $answer1 = "null";
+    }
 
-    	if(isset($_SESSION["no".($current + 1)]))
-    	{
-        	$answer2 = $_SESSION["no".($current + 1)];
-    	}
+    if(isset($_SESSION["no".($current + 1)]))
+    {
+        $answer2 = $_SESSION["no".($current + 1)];
+    }
 	else
 	{
 		$answer2 = "null";
@@ -128,7 +162,7 @@ function checkAnswer()
 						if($current > 2)
 						{
 							
-							echo "<input type='submit' name='last' value='last'>";
+							echo "<input type='submit' name='last' value='last' id='last'>";
 						}
 						else
 						{
@@ -143,7 +177,7 @@ function checkAnswer()
 						//下一页按钮						
 						if($current + 1< count($test))
 						{
-							echo "<input type='submit' name='next' value='next'>";
+							echo "<input type='submit' name='next' value='next' id='next'>";
 						}
 						else
 						{
@@ -165,6 +199,9 @@ function checkAnswer()
 ?>
 
 <br><br>
+
+<input type="button" value="START" onclick="begin()" />
+<div id="timeless"></div>
 
 </body>
 </html>
