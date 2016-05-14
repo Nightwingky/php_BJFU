@@ -1,0 +1,73 @@
+﻿<?php
+	$test[1]=array("subject"=>"C#中每个 int 类型的变量占用_______个字节的内存?",
+					"A"=>"1",
+					"B"=>"2",
+					"C"=>"4",
+					"D"=>"8");
+					
+	$test[2]=array("subject"=>"在 C#中,表示一个字符串的变量应使用以下哪条语句定义?",
+					"A"=>"CString str;",
+					"B"=>"string str;",
+					"C"=>"Dim str as string;",
+					"D"=>"char * str;");
+
+	$test[3]=array("subject"=>"若必须为类 MyClass 添加访问修饰符,并使 MyClass 的可访问域保持不变,则应选择",
+					"A"=>"private",
+					"B"=>"protected",
+					"C"=>"internal",
+					"D"=>"public");
+					
+	$test[4]=array("subject"=>"C#程序中,可使用 try..catch 机制来处理程序出现的_____错误?",
+					"A"=>"语法",
+					"B"=>"运行",
+					"C"=>"逻辑",
+					"D"=>"拼写");
+
+	$test[5]=array("subject"=>"string[,] strArray = new string[3][4]; 创建了多少个 string 对象?",
+					"A"=>"0",
+					"B"=>"3",
+					"C"=>"4",
+					"D"=>"12");
+
+	$test[6]=array("subject"=>"用鼠标右击一个控件时出现的菜单一般称为",
+					"A"=>"主菜单",
+					"B"=>"菜单项",
+					"C"=>"快捷菜单",
+					"D"=>"子菜单");
+
+	$test[7]=array("subject"=>"在 C#语言中,下列能够作为变量名的是",
+					"A"=>"if",
+					"B"=>"3ab",
+					"C"=>"a_3b",
+					"D"=>"a-bc");
+
+	$test[8]=array("subject"=>"在 C#语言中,下面的运算符中,优先级最高的是",
+					"A"=>"%",
+					"B"=>"++",
+					"C"=>"/=",
+					"D"=>">>");
+
+	$test[9]=array("subject"=>"能正确表示逻辑关系“a>=10 或 a<=0”的 C#语言表达式是",
+					"A"=>"a>=10 or a<=0",
+					"B"=>"a>=10|a<=0",
+					"C"=>"a>=10&&a<=0",
+					"D"=>"a>=10||a<=0");
+
+	$test[10]=array("subject"=>"if语句后面的表达式应该是",
+					"A"=>"逻辑表达式",
+					"B"=>"条件表达式",
+					"C"=>"算术表达式",
+					"D"=>"任意表达式");
+
+	$test[11]=array("subject"=>"以下类型中,不属于值类型的是",
+					"A"=>"整数类型",
+					"B"=>"布尔类型",
+					"C"=>"字符类型",
+					"D"=>"类类型");
+
+	$test[12]=array("subject"=>"下面的修饰符中___不是访问修饰符?",
+					"A"=>"public",
+					"B"=>"private",
+					"C"=>"new",
+					"D"=>"internal");
+?>
