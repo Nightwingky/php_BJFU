@@ -32,7 +32,7 @@
 		{
 			align:right;
 			border:1px solid black;
-			height:30px;
+			height:60px;
 			width:100px;
 		}
 
@@ -54,6 +54,35 @@
 
 	</style>
 
+	<script type = "text/javascript">
+		function checkAnswer(name, value)
+		{
+			//alert(name+" "+value);
+			//var sendStr = '?number=name&value=value';
+			var httpRequest = new XMLHttpRequest();
+
+  			httpRequest.open("GET","checkOnePage.php?number="+name+"&value="+value);
+  			httpRequest.send();
+		}
+
+		function testStart(second)
+		{
+  			second -= 1;
+  			//alert("abc");
+  			var httpR = new XMLHttpRequest();
+  			httpR.open("GET","index.php?time="+second);
+  			httpR.send();
+  			document.getElementById("timeless").innerHTML = second;
+  			if(second!=0)
+  			{
+    			setTimeout("testStart("+second+")",1000);
+  			}
+  			else
+  			{
+    			alert("time is out");
+  			}
+		}
+	</script>
 
 </head>
 <body>
@@ -64,11 +93,6 @@
 
 	$totalPage = count($test) / 2;//count the number of pages
 ?>
-
-<script type = "text/javascript">
-	
-</script>
-
 
 <?php
 	//php for page
@@ -90,8 +114,16 @@
 ?>
 
 <div class = "timeCountContainer">
-	
-	
+
+	<?php
+		if(isset($_GET["time"]))
+		{
+			$_SESSION["time"]=$_GET["time"];
+		}
+		echo "<p align='right' id='timeless'><input type='button' onclick='testStart(60)' value='start'></p>";
+	?>
+	<script>testStart(<?php echo $_SESSION["time"]; ?>);</script>
+
 </div>
 
 <div class = "questionContainer">
@@ -99,11 +131,12 @@
 <?php
 	//php for questions
 	define("questionAmount", 2);//define a constant to keep the number of question per page
-
+	
 	//print two questions
 	for($i = 1; $i <= questionAmount; $i++)
 	{
 		$questionNum = ($current - 1) * 2 + $i;
+
 		//print the question
 		echo "<h4>".$questionNum.".".$test[$questionNum]['subject']."</h4>";
 
@@ -111,12 +144,12 @@
 		for($j = 'A'; $j <= 'D'; $j++)
 		{
 			echo "<p>";
-
-			echo "<input type='radio' name='choose" . $i . "' value='" . $j;
-			echo "' onchange='checkAnswer(";
-			echo "'choose" . $i . "', '" . $j . "'";
-			echo ")' id = 'question'" . $questionNum;
-			if(@$_SESSION["choose".$i] == $j) 
+			//<input type = "radio" name = "choose1" value = "A" onchange = "checkAnswer('Answer1', 'A')">
+			echo "<input type=\"radio\" name=\"choose" . $i . "\" value=\"" . $j;
+			echo "\" onchange=\"checkAnswer(";
+			echo "'Answer" . $questionNum . "', '" . $j . "'";
+			echo ")\"";
+			if(@$_SESSION["noAnswer".$questionNum] == $j) 
 			{
 				echo"checked='checked'";
 			}
