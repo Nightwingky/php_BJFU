@@ -66,27 +66,7 @@
 ?>
 
 <script type = "text/javascript">
-	function checkAnswer(name, value)
-	{
-		var httpRequest=new XMLHttpRequest();
-  		httpRequest.open("GET","checkOnePage.php?number="+name+"&value="+value);
-  		httpRequest.send();
-	}
-	function teststart(second)
-	{
-  		second -= 1;
-  		var httpR = new XMLHttpRequest();
-  		httpR.open("GET", "index.php?time=" + second);
-  		httpR.send();
-  		document.getElementById("time").innerHTML = second;
-  		if(second != 0)
-  		{
-    		setTimeout("teststart(" + second + ")", 1000);
-  		}
-  		else
-  		{
-    		alert("time is out");
-  		}
+	
 </script>
 
 
