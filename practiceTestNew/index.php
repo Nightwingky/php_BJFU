@@ -52,6 +52,14 @@
 			border:1px solid blue;
 		}
 
+		.submitBtn
+		{
+			height:30px;
+			width:56px;
+			align:center;
+			margin:10px auto;
+			border:1px solid green;
+		}
 	</style>
 
 	<script type = "text/javascript">
@@ -67,7 +75,7 @@
 		{
   			second -= 1;
 
-  			var httpReTime = new XMLHttpReTimeequest();
+  			var httpReTime = new XMLHttpRequest();
   			httpReTime.open("GET","index.php?time="+second);
   			httpReTime.send();
 
@@ -79,7 +87,13 @@
   			else
   			{
     			alert("time is out");
+    			submit();
   			}
+		}
+
+		function submit()
+		{
+			window.location.href = 'answer.php';
 		}
 	</script>
 
@@ -210,6 +224,10 @@
 			?>
 			
 		</ul>	
+	</div>
+
+	<div class = "submitBtn">
+		<input type = "button" value = "submit" onclick="submit()">
 	</div>
 
 </div>
