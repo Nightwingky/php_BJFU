@@ -57,21 +57,20 @@
 	<script type = "text/javascript">
 		function checkAnswer(name, value)
 		{
-			//alert(name+" "+value);
-			//var sendStr = '?number=name&value=value';
 			var httpRequest = new XMLHttpRequest();
 
-  			httpRequest.open("GET","checkOnePage.php?number="+name+"&value="+value);
+  			httpRequest.open("GET","check.php?number="+name+"&value="+value);
   			httpRequest.send();
 		}
 
 		function testStart(second)
 		{
   			second -= 1;
-  			//alert("abc");
-  			var httpR = new XMLHttpRequest();
-  			httpR.open("GET","index.php?time="+second);
-  			httpR.send();
+
+  			var httpReTime = new XMLHttpReTimeequest();
+  			httpReTime.open("GET","index.php?time="+second);
+  			httpReTime.send();
+
   			document.getElementById("timeless").innerHTML = second;
   			if(second!=0)
   			{
@@ -120,7 +119,7 @@
 		{
 			$_SESSION["time"]=$_GET["time"];
 		}
-		echo "<p align='right' id='timeless'><input type='button' onclick='testStart(60)' value='start'></p>";
+		echo "<p align='right' id='timeless'><input type='button' onclick='testStart(120)' value='start'></p>";
 	?>
 	<script>testStart(<?php echo $_SESSION["time"]; ?>);</script>
 
@@ -149,7 +148,7 @@
 			echo "\" onchange=\"checkAnswer(";
 			echo "'Answer" . $questionNum . "', '" . $j . "'";
 			echo ")\"";
-			if(@$_SESSION["noAnswer".$questionNum] == $j) 
+			if(@$_SESSION["Answer".$questionNum] == $j) 
 			{
 				echo"checked='checked'";
 			}

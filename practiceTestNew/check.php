@@ -11,9 +11,9 @@
 	$number=$_GET["number"];
 	$value=$_GET["value"];
 
-	$_SESSION["no".$number]=$value;
+	$_SESSION[$number]=$value;
 
-	header("location:index.php");
+	//header("location:index.php");
 ?>
 
 </body>
