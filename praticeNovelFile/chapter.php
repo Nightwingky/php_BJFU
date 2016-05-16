@@ -8,6 +8,14 @@
 		{
 			margin:10px auto;
 		}
+
+		.back
+		{
+			margin:10px auto;
+			width:200px;
+			height:30px;
+			border:1px solid black;
+		}
 	</style>
 </head>
 <body>
@@ -28,7 +36,9 @@
 			echo "<td align='center'>";
 			if($chapterNum == 1)
 			{
-				echo "Last";
+				echo "<a href='index.php'>";
+				echo "Back to Catalogue";
+				echo "</a>";
 			}
 			else
 			{
@@ -42,7 +52,9 @@
 			echo "<td align='center'>";
 			if($chapterNum == 7)
 			{
-				echo "Next";
+				echo "<a href='index.php'>";
+				echo "Back to Catalogue";
+				echo "</a>";
 			}
 			else
 			{
@@ -56,16 +68,21 @@
 	</tr>
 </table>
 
-<?php
-	$fp = fopen("/var/www/html/phptest/demo/praticeNovelFile/upfile/".$chapterNum.".txt", 'r');
+<div>
+	<?php
+		$fp = fopen("/var/www/html/phptest/demo/praticeNovelFile/upfile/".$chapterNum.".txt", 'r');
 
-	while(!feof($fp))
-	{
-		echo fgets($fp);
-	}
+		while(!feof($fp))
+		{
+			echo fgets($fp);
+		}
 
-	fclose($fp);
-?>
+		fclose($fp);
+	?>
+</div>
 
+<div class="back">
+	<a href="index.php" align="center">BACK TO CATALAGUE</a>
+</div>
 </body>
 </html>
