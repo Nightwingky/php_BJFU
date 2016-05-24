@@ -17,20 +17,40 @@
 	session_start();
 
 	$fp = fopen("filelist.txt", 'r');
-	$i = 0;
+	$countLine = 0;
 	while(!feof($fp))
 	{
-		$i++;
-		$_SESSION["chapter".$i] = fgets($fp);
+		$countLine++;
+		$string = fgets($fp);
+		if($string)
+		{
+			$_SESSION["chapter".$countLine] = $string;
+		}
 	}
 	fclose($fp);
 ?>
 
 <table border = 1 class = "tableChapter">
 	<tr>
-		<th colspan="4">Novel</th>
+		<th>Novel</th>
 	</tr>
 	<?php
+		for($i = 1; $i<=$countLine; $i++)
+		{
+			$strArr = str_split(@$_SESSION["chapter".$i], "1");
+			if($strArr[0] == "0")
+			{
+				$chapterNum = @$_SESSION["chapter".$i];
+				echo "<tr>";
+				echo "<td align='center'>";
+				echo "<a href='chapter.php?num=".$chapterNum."&total=".$countLine."'>";
+				echo $chapterNum;
+				echo "</a>";
+				echo "</td>";
+				echo "</tr>";
+			}
+		}
+		/*
 		$count = 1;
 		for($i = 1; $i <= 2; $i++)
 		{
@@ -48,6 +68,7 @@
 			}
 			echo "</tr>";
 		}
+		*/
 	?>
 </table>
 

@@ -45,7 +45,7 @@
 		exit();
 	}
 
-	$upfile = "/resources/".$_FILES['userfile']['name'];
+	$upfile = "upfile/".$_FILES['userfile']['name'];
 
 	if(is_uploaded_file($_FILES['userfile']['tmp_name']))
 	{
@@ -64,14 +64,27 @@
 
 	echo "File uploaded successfully<br><br>";
 
+	chmod($upfile, 777);//If your operating system is Linux, PLEASE ADD THIS LINE!!!!!
+
 	$contents = file_get_contents($upfile);
+
+	/*
 	$contents = strip_tags($contents);
 	file_put_contents($_FILES['userfile']['name'], $contents);
+	*/
 
 	echo "<p>Preview</p>";
-	echo n12br($contents);
+	echo $contents;
 	echo "<br><br>";
+
+	$fp = fopen("filelist.txt", 'a');
+	$filename = explode(".", $_FILES['userfile']['name']);
+	fwrite($fp, "\r\n");
+	fwrite($fp, $filename[0]);
+	fclose($fp);
 ?>
+
+<a href="upload.html">back</a>
 
 </body>
 </html>

@@ -23,6 +23,7 @@
 <?php	
 	session_start();
 	$chapterNum = $_GET["num"];
+	$total = @$_GET["total"] - 1;
 ?>
 
 <table border="2" class="title">
@@ -50,7 +51,7 @@
 			echo "</td>";
 
 			echo "<td align='center'>";
-			if($chapterNum == 7)
+			if($chapterNum == $total)
 			{
 				echo "<a href='index.php'>";
 				echo "Back to Catalogue";
@@ -70,7 +71,9 @@
 
 <div>
 	<?php
-		$fp = fopen("/var/www/html/phptest/demo/praticeNovelFile/upfile/".$chapterNum.".txt", 'r');
+		$filename = "/var/www/html/phptest/demo/practiceNovelUpload/upfile/".$chapterNum.".txt";
+		chmod($filename, '777');//You don't need this line if your OS is WINDOWS.
+		$fp = fopen($filename, 'r');
 
 		while(!feof($fp))
 		{
