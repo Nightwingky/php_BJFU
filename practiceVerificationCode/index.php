@@ -13,18 +13,33 @@
 
 <script type="text/javascript">
 	function getVerificationCode()
-	{
+	{	
+		var alphabet = ["q","w","e","r","t","y","u","i","o","p","o","a","s","d","f","g","h","j","k","l","k","z","x","c","v","b","n","m","Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M","1","2","3","4","5","6","7","8","9","0"];
+
+		var veriCode = 
+			alphabet[Math.floor(Math.random()*62)]+
+			alphabet[Math.floor(Math.random()*62)]+
+			alphabet[Math.floor(Math.random()*62)]+
+			alphabet[Math.floor(Math.random()*62)];
+
+		//alert(veriCode);
+		/*
 		var httpRequest = new XMLHttpRequest();
 
-  		httpRequest.open("GET","verify.php");
+  		httpRequest.open("GET","verify.php?veriCode="+veriCode);
   		httpRequest.send();
+		*/
+  		var yucodeurl = document.getElementById("code").src;
+ 		document.getElementById("code").src = yucodeurl +'?'+ veriCode;
+
+  		//document.getElementById("code").innerHTML.src = ;
 	}
 </script>
 
 <body>
 
 <?php
-	ob_clean();
+	//ob_clean();
 	session_start();
 	
 	//header("content-type:image/jpeg");
@@ -50,10 +65,10 @@
 	</tr>
 	<tr>
 		<td align = "center">
-			<img width = "100px" height = "25px" id = "verificationCode">
+			<img width = "100px" height = "25px" src = "verify.php">
 		</td>
 		<td align = "center">
-			<button type = "button" onclick = "getVerificationCode()">Another One</button>
+			<button type = "button" onclick = "getVerificationCode()" id = "code">Another One</button>
 		</td>
 	</tr>
 	<tr>
